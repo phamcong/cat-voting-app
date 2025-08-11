@@ -1,8 +1,16 @@
 import { JSX } from 'react';
 import { ThemeToggle } from './components/ThemeToggle';
 import { CatGallery } from './components/CatGallery';
+import { Toast } from './components/Toast';
+import useStore from './store';
+import { useNetworkStatus } from './hooks/useNetworkStatus';
 
 function App(): JSX.Element {
+  const { networkError, clearNetworkError } = useStore();
+  
+  // Monitor network status
+  useNetworkStatus();
+  
   return (
     <div className="min-h-screen theme-bg-primary">
       {/* Header */}
@@ -62,6 +70,11 @@ function App(): JSX.Element {
           </div>
         </div>
       </footer>
+      
+      {/* Network Error Toast */}
+      {networkError && (
+        <Toast message={networkError} onClose={clearNetworkError} />
+      )}
     </div>
   );
 }

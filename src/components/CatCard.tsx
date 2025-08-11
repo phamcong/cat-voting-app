@@ -1,7 +1,7 @@
 import { JSX, useState } from 'react';
+import { FaThumbsDown, FaThumbsUp } from 'react-icons/fa';
 import { CatImage } from '../services/catApi';
 import useStore from '../store';
-import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 
 interface CatCardProps {
   cat: CatImage;

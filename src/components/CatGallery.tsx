@@ -1,11 +1,11 @@
-import React, { JSX, useState, useEffect } from 'react';
-import { CatCard } from './CatCard';
+import { JSX, useEffect, useState } from 'react';
 import useStore from '../store';
+import { CatCard } from './CatCard';
 
 type TabType = 'all' | 'voted';
 
 export function CatGallery(): JSX.Element {
-  const { images, isLoading, error, fetchRandomImages, refreshImages, userVotes } = useStore();
+  const { images, isLoading, error, fetchRandomImages, refreshImages, userVotes, action } = useStore();
   const [visibleImages, setVisibleImages] = useState<number[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState<TabType>('all');
@@ -59,7 +59,7 @@ export function CatGallery(): JSX.Element {
     );
   }
 
-  if (error) {
+  if (error && action === 'fetchRandomImages') {
     return (
       <div className="text-center py-16">
         <div className="max-w-md mx-auto space-y-6">

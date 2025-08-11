@@ -1,6 +1,5 @@
 // TheCatAPI service
 const API_BASE_URL = 'https://api.thecatapi.com/v1';
-const API_KEY = 'live_1234567890abcdef'; // You'll need to replace this with your actual API key
 
 export interface CatImage {
   id: string;
@@ -61,6 +60,7 @@ class CatApiService {
       return await response.json();
     } catch (error) {
       console.error('Error creating vote:', error);
+      
       throw error;
     }
   }
