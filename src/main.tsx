@@ -5,7 +5,7 @@ import './index.css';
 
 // Initialize theme before rendering
 const initializeTheme = () => {
-  const savedTheme = localStorage.getItem('app-storage');
+  const savedTheme = localStorage.getItem('cat-voting-storage');
   if (savedTheme) {
     try {
       const parsed = JSON.parse(savedTheme);

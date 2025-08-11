@@ -1,51 +1,49 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
 
-// Mock the theme hook to avoid localStorage issues in tests
-jest.mock('../hooks/useTheme', () => ({
-  useTheme: () => ({
+// Mock the store to avoid API calls in tests
+jest.mock('../store', () => ({
+  __esModule: true,
+  default: () => ({
     theme: 'light',
     toggleTheme: jest.fn(),
     setTheme: jest.fn(),
-    isDark: false,
-    isLight: true,
+    images: [],
+    userVotes: {},
+    scores: {},
+    isLoading: false,
+    error: null,
+    fetchRandomImages: jest.fn(),
+    voteOnImage: jest.fn(),
+    refreshImages: jest.fn(),
+    clearError: jest.fn(),
   }),
 }));
 
 describe('App Component', () => {
-  test('renders welcome message', () => {
+  test('renders cat voting app title', () => {
     render(<App />);
-    expect(screen.getByText('Development Setup Complete!')).toBeInTheDocument();
+    expect(screen.getByText('🐱 Cat Voting App')).toBeInTheDocument();
+  });
+
+  test('renders app description', () => {
+    render(<App />);
+    expect(screen.getByText('Vote on the cutest cats and see how others voted!')).toBeInTheDocument();
   });
 
   test('renders theme toggle', () => {
     render(<App />);
-    // Check for the theme toggle button by looking for the button element
-    const themeToggle = screen.getByRole('button', { name: /switch to/i });
-    expect(themeToggle).toBeInTheDocument();
+    expect(screen.getByLabelText('Switch to dark mode')).toBeInTheDocument();
   });
 
-  test('counter increments when + button is clicked', () => {
+  test('renders footer text', () => {
     render(<App />);
-    const incrementButton = screen.getByText('+');
-    const counter = screen.getByText(/Zustand Counter:/);
-    
-    expect(counter).toHaveTextContent('0');
-    
-    fireEvent.click(incrementButton);
-    expect(counter).toHaveTextContent('1');
+    expect(screen.getByText('Powered by TheCatAPI • Your votes are saved locally')).toBeInTheDocument();
   });
 
-  test('opens dialog when button is clicked', () => {
+  test('shows no cats found state initially', () => {
     render(<App />);
-    const openDialogButton = screen.getByText('Open Dialog');
-    
-    fireEvent.click(openDialogButton);
-    expect(screen.getByText('Deactivate account')).toBeInTheDocument();
-  });
-
-  test('shows theme system in installed list', () => {
-    render(<App />);
-    expect(screen.getByText('Theme System (dark/light mode)')).toBeInTheDocument();
+    expect(screen.getByText('No cats found')).toBeInTheDocument();
+    expect(screen.getByText('Load Cats')).toBeInTheDocument();
   });
 });

@@ -10,7 +10,7 @@ export const useTheme = () => {
     // Remove both theme classes first
     root.classList.remove('light', 'dark');
     
-    // Add current theme class
+    // Add current theme class for Tailwind dark mode
     root.classList.add(theme);
     
     // Update data attribute for CSS custom properties

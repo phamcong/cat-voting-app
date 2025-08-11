@@ -15,8 +15,7 @@ export function ThemeToggle(): JSX.Element {
         className="absolute left-1 flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300 theme-bg-toggle-thumb"
         style={{
           transform: theme === 'dark' ? 'translateX(0)' : 'translateX(2.5rem)',
-          color: theme === 'dark' ? '#92400e' : 'var(--text-secondary)',
-          boxShadow: theme === 'dark' ? 'none' : 'var(--shadow-toggle)',
+          color: theme === 'dark' ? '#92400e' : '#6b7280',
         }}
       >
         {theme === 'dark' ? (
