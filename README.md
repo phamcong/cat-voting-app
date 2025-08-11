@@ -2,6 +2,8 @@
 
 A modern, interactive web application for voting on adorable cat images. Built with React, TypeScript, and Tailwind CSS, featuring a beautiful UI with dark/light theme support and local vote storage.
 
+🌐 **[Live Demo](https://689a77d4c619e0856d706dc9--precious-truffle-00b0f7.netlify.app/)**
+
 ## ✨ Features
 
 - **Cat Image Gallery**: Browse and vote on cat images from TheCatAPI
@@ -18,6 +20,10 @@ A modern, interactive web application for voting on adorable cat images. Built w
 
 - **Node.js** (v16 or higher)
 - **npm** or **yarn**
+
+### Try the App First
+
+🌐 **[View Live Demo](https://689a77d4c619e0856d706dc9--precious-truffle-00b0f7.netlify.app/)**
 
 ### Installation
 
@@ -275,8 +281,8 @@ npm run preview
 
 ### Deployment Options
 
+- **Netlify**: ✅ **Currently deployed** - [Live Demo](https://689a77d4c619e0856d706dc9--precious-truffle-00b0f7.netlify.app/)
 - **Vercel**: Zero-config deployment
-- **Netlify**: Drag-and-drop deployment
 - **GitHub Pages**: Free hosting for public repos
 - **AWS S3**: Static site hosting
 
