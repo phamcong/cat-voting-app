@@ -1,1 +1,129 @@
 @import "tailwindcss";
+
+/* CSS Custom Properties for theming */
+:root {
+  --transition-duration: 300ms;
+}
+
+/* Light theme (default) */
+:root {
+  --bg-primary: #f3f4f6;      /* gray-100 */
+  --bg-secondary: #ffffff;     /* white */
+  --bg-card: #ffffff;          /* white */
+  --bg-button-primary: #3b82f6; /* blue-500 */
+  --bg-button-primary-hover: #1d4ed8; /* blue-700 */
+  --bg-button-secondary: #6b7280; /* gray-500 */
+  --bg-button-secondary-hover: #374151; /* gray-700 */
+  --bg-button-danger: #ef4444; /* red-500 */
+  --bg-button-danger-hover: #dc2626; /* red-700 */
+  --bg-button-success: #8b5cf6; /* purple-500 */
+  --bg-button-success-hover: #7c3aed; /* purple-700 */
+  --bg-toggle: #e5e7eb;       /* gray-200 */
+  --bg-toggle-thumb: #ffffff; /* white */
+  
+  --text-primary: #111827;     /* gray-900 */
+  --text-secondary: #374151;   /* gray-700 */
+  --text-muted: #6b7280;      /* gray-600 */
+  --text-accent: #2563eb;     /* blue-600 */
+  --text-white: #ffffff;      /* white */
+  
+  --shadow-primary: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-toggle: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  
+  --border-color: #e5e7eb;    /* gray-200 */
+  --focus-ring: #3b82f6;      /* blue-500 */
+  
+  --dialog-backdrop: rgba(0, 0, 0, 0.3);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --bg-primary: #111827;       /* gray-900 */
+  --bg-secondary: #1f2937;     /* gray-800 */
+  --bg-card: #1f2937;          /* gray-800 */
+  --bg-button-primary: #2563eb; /* blue-600 */
+  --bg-button-primary-hover: #1e40af; /* blue-800 */
+  --bg-button-secondary: #4b5563; /* gray-600 */
+  --bg-button-secondary-hover: #374151; /* gray-700 */
+  --bg-button-danger: #dc2626; /* red-600 */
+  --bg-button-danger-hover: #b91c1c; /* red-700 */
+  --bg-button-success: #7c3aed; /* purple-600 */
+  --bg-button-success-hover: #6d28d9; /* purple-800 */
+  --bg-toggle: #374151;        /* gray-700 */
+  --bg-toggle-thumb: #fbbf24; /* yellow-400 */
+  
+  --text-primary: #f9fafb;     /* gray-50 */
+  --text-secondary: #d1d5db;   /* gray-300 */
+  --text-muted: #9ca3af;       /* gray-400 */
+  --text-accent: #60a5fa;      /* blue-400 */
+  --text-white: #ffffff;       /* white */
+  
+  --shadow-primary: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --shadow-card: 0 10px 15px -3px rgba(17, 24, 39, 0.5), 0 4px 6px -2px rgba(17, 24, 39, 0.3);
+  --shadow-toggle: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  
+  --border-color: #374151;     /* gray-700 */
+  --focus-ring: #60a5fa;       /* blue-400 */
+  
+  --dialog-backdrop: rgba(0, 0, 0, 0.5);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar for dark mode */
+[data-theme="dark"] ::-webkit-scrollbar {
+  width: 8px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #6b7280;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Focus styles that work in both themes */
+.focus-visible:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Theme-aware component styles */
+.theme-bg-primary { background-color: var(--bg-primary); }
+.theme-bg-card { background-color: var(--bg-card); }
+.theme-bg-button-primary { background-color: var(--bg-button-primary); }
+.theme-bg-button-secondary { background-color: var(--bg-button-secondary); }
+.theme-bg-button-danger { background-color: var(--bg-button-danger); }
+.theme-bg-button-success { background-color: var(--bg-button-success); }
+.theme-bg-toggle { background-color: var(--bg-toggle); }
+.theme-bg-toggle-thumb { background-color: var(--bg-toggle-thumb); }
+
+.theme-text-primary { color: var(--text-primary); }
+.theme-text-secondary { color: var(--text-secondary); }
+.theme-text-muted { color: var(--text-muted); }
+.theme-text-accent { color: var(--text-accent); }
+.theme-text-white { color: var(--text-white); }
+
+.theme-shadow-card { box-shadow: var(--shadow-card); }
+.theme-shadow-toggle { box-shadow: var(--shadow-toggle); }
+
+/* Button hover states using CSS */
+.theme-button-primary:hover { background-color: var(--bg-button-primary-hover) !important; }
+.theme-button-secondary:hover { background-color: var(--bg-button-secondary-hover) !important; }
+.theme-button-danger:hover { background-color: var(--bg-button-danger-hover) !important; }
+.theme-button-success:hover { background-color: var(--bg-button-success-hover) !important; }
+
+/* Dialog backdrop */
+.theme-dialog-backdrop { background-color: var(--dialog-backdrop); }
