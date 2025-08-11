@@ -1,6 +1,7 @@
 import { JSX, useState } from 'react';
 import { CatImage } from '../services/catApi';
 import useStore from '../store';
+import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 
 interface CatCardProps {
   cat: CatImage;
@@ -58,9 +59,9 @@ export function CatCard({ cat }: CatCardProps): JSX.Element {
         )}
       </div>
 
-      {/* Voting Controls */}
+      {/* Voting Controls - Light backgrounds by default, neutral icons */}
       <div className="p-5">
-        <div className="flex gap-3 mb-4">
+        <div className="flex gap-3">
           {/* Upvote Button */}
           <button
             onClick={() => handleVote(1)}
@@ -68,13 +69,13 @@ export function CatCard({ cat }: CatCardProps): JSX.Element {
             className={`flex-1 relative overflow-hidden rounded-lg py-2.5 px-3 font-medium text-sm transition-all duration-200 ${
               hasVoted
                 ? userVote === 1
-                  ? 'theme-bg-button-success text-white shadow-sm'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-400 cursor-not-allowed'
-                : 'theme-bg-button-primary hover:theme-bg-button-primary-hover text-white active:scale-[0.98]'
+                  ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700'
+                  : 'bg-gray-100 dark:bg-gray-700 text-gray-400 cursor-not-allowed border border-gray-200 dark:border-gray-600'
+                : 'bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-600 active:scale-[0.98] cursor-pointer'
             }`}
           >
             <span className="flex items-center justify-center gap-2">
-              <span className="text-base">👍</span>
+              <FaThumbsUp className="text-base" />
               <span>Upvote</span>
             </span>
           </button>
@@ -86,44 +87,28 @@ export function CatCard({ cat }: CatCardProps): JSX.Element {
             className={`flex-1 relative overflow-hidden rounded-lg py-2.5 px-3 font-medium text-sm transition-all duration-200 ${
               hasVoted
                 ? userVote === -1
-                  ? 'theme-bg-button-danger text-white shadow-sm'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-400 cursor-not-allowed'
-                : 'theme-bg-button-primary hover:theme-bg-button-primary-hover text-white active:scale-[0.98]'
+                  ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-700'
+                  : 'bg-gray-100 dark:bg-gray-700 text-gray-400 cursor-not-allowed border border-gray-200 dark:border-gray-600'
+                : 'bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-600 active:scale-[0.98] cursor-pointer'
             }`}
           >
             <span className="flex items-center justify-center gap-2">
-              <span className="text-base">👎</span>
+              <FaThumbsDown className="text-base" />
               <span>Downvote</span>
             </span>
           </button>
         </div>
-
-        {/* Vote Status */}
-        {hasVoted && (
-          <div className="text-center">
-            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium ${
-              userVote === 1 
-                ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800' 
-                : 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800'
-            }`}>
-              <span className="text-sm">
-                {userVote === 1 ? '✓' : '✗'}
-              </span>
-              <span>Voted {userVote === 1 ? 'Up' : 'Down'}</span>
-            </div>
-          </div>
-        )}
-
-        {/* Loading State */}
-        {isVoting && (
-          <div className="absolute inset-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl flex items-center justify-center">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-5 w-5 border-2 border-gray-400 border-t-gray-600 dark:border-gray-500 dark:border-t-gray-300 mx-auto mb-2"></div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">Submitting...</p>
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Loading State - Semi-transparent overlay */}
+      {isVoting && (
+        <div className="absolute inset-0 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-5 w-5 border-2 border-gray-400 border-t-gray-600 dark:border-gray-500 dark:border-t-gray-300 mx-auto mb-2"></div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">Submitting...</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
