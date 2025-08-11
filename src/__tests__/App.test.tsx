@@ -23,12 +23,12 @@ jest.mock('../store', () => ({
 describe('App Component', () => {
   test('renders cat voting app title', () => {
     render(<App />);
-    expect(screen.getByText('🐱 Cat Voting App')).toBeInTheDocument();
+    expect(screen.getByText('Cat Voting Platform')).toBeInTheDocument();
   });
 
   test('renders app description', () => {
     render(<App />);
-    expect(screen.getByText('Vote on the cutest cats and see how others voted!')).toBeInTheDocument();
+    expect(screen.getByText('Rate and vote on cat images from around the world')).toBeInTheDocument();
   });
 
   test('renders theme toggle', () => {
@@ -38,12 +38,15 @@ describe('App Component', () => {
 
   test('renders footer text', () => {
     render(<App />);
-    expect(screen.getByText('Powered by TheCatAPI • Your votes are saved locally')).toBeInTheDocument();
+    expect(screen.getByText('Powered by')).toBeInTheDocument();
+    expect(screen.getByText('TheCatAPI')).toBeInTheDocument();
+    expect(screen.getByText('Votes stored locally')).toBeInTheDocument();
   });
 
   test('shows no cats found state initially', () => {
     render(<App />);
-    expect(screen.getByText('No cats found')).toBeInTheDocument();
-    expect(screen.getByText('Load Cats')).toBeInTheDocument();
+    expect(screen.getByText('No Images Available')).toBeInTheDocument();
+    expect(screen.getByText('Click below to load some adorable cats')).toBeInTheDocument();
+    expect(screen.getByText('Load Images')).toBeInTheDocument();
   });
 });
