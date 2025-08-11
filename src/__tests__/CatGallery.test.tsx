@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { CatGallery } from '../components/CatGallery';
 import { CatImage } from '../services/catApi';
 

@@ -24,9 +24,16 @@ export interface VoteRequest {
 
 class CatApiService {
   private headers = {
-    'x-api-key': 'live_hIpXu48Rl5TfI96hDv6C6BG9R1fLF8kXNysPrZG6DR7HodtOYBiobNKrOWEBgIv3',
+    'x-api-key': (import.meta as any).env?.VITE_CAT_API_KEY || '',
     'Content-Type': 'application/json',
   };
+
+  constructor() {
+    // Validate that API key is provided
+    if (!(import.meta as any).env?.VITE_CAT_API_KEY) {
+      console.warn('VITE_CAT_API_KEY is not set. API calls may fail.');
+    }
+  }
 
   async getRandomImages(limit: number = 10): Promise<CatImage[]> {
     try {
